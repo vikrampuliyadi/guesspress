@@ -1,17 +1,22 @@
 import cv2
+import numpy as np
 
+# put some random mp4 file here
+video = cv2.VideoCapture("/Users/vikrampuliyadi/Downloads/bopkrish_hRJGm7W5.mp4")
 
-image = cv2.imread('path_to_your_image.jpg')
+if not video.isOpened():
+    print("error")
+    exit()
 
+while True:
 
-if image is not None:
+    _, frame = video.read()
+    cv2.imshow("Video", frame)
+    
+    key = cv2.waitKey(30)
 
-    cv2.imshow('Test Image', image)
-    cv2.waitKey(0) 
-    cv2.destroyAllWindows()  
+    if key == 27:
+        break
+video.release()
+cv2.destroyAllWindows()
 
-else:
-    print('Error: Unable to load the image.')
-
-
-print('OpenCV version:', cv2.__version__)
